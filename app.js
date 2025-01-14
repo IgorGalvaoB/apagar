@@ -11,16 +11,16 @@ const mongoose = require('mongoose')
 const Word5 = require('./models/Words5.model') 
 const app = express()
 app.use(express.json()) 
-app.use((req,res,next)=>{
+/*/app.use((req,res,next)=>{
     res.header("Acess-Control-Allow-Origin", "*");
     res.header("Acess-Control-Allow-Origin", 'GET,PUT,DELETE,POST')
     app.use(cors());
     next();
-})
+})*/
 //mongoose.set('strictQuery', true)
+app.use(cors())
 
-
-app.use('/:word', require('./routes/word.routes'))
+app.use('/', require('./routes/word.routes'))
 app.get('/meu-ip', (req, res) => {
   const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
   res.send(`IP do cliente: ${ip}`)
