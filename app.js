@@ -29,7 +29,10 @@ app.get('/:word', async (req, res) => {
     return res.status(500).json({ error: 'Erro no servidor.' });
   }
 });
-
+app.get('/meu-ip', (req, res) => {
+  const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+  res.send(`IP do cliente: ${ip}`);
+});
 // Conectar ao MongoDB e iniciar o servidor
 const startServer = async () => {
   try {
