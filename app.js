@@ -11,7 +11,7 @@ app.use(express.json()); // Para tratar JSON no body
 mongoose.set('strictQuery', true);
 
 // Rota para buscar uma palavra no banco de dados
-app.get('/alo/:word', async (req, res) => {
+app.get('/:word', async (req, res) => {
   const { word } = req.params; // Obtém a palavra do parâmetro da rota
 
   try {
