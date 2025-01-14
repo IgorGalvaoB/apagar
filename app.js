@@ -40,8 +40,7 @@ app.get('/meu-ip', (req, res) => {
 // Conectar ao MongoDB e iniciar o servidor
 const startServer = async () => {
   try {
-    const MONGO_CONNECTION_STRING =
-      'mongodb+srv://admin:admin@letrix.yyas9by.mongodb.net/Letrix'; // String de conexão
+    const MONGO_CONNECTION_STRING ='mongodb+srv://admin:admin@letrix.yyas9by.mongodb.net/Letrix'; // String de conexão
     await mongoose.connect(MONGO_CONNECTION_STRING, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
