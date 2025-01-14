@@ -8,7 +8,7 @@ const cors = require('cors')
 
 const express = require('express')
 const mongoose = require('mongoose')
-const Word5 = require('./Words5.model') 
+const Word5 = require('./models/Words5.model') 
 const app = express()
 app.use(express.json()) 
 app.use((req,res,next)=>{
@@ -17,7 +17,7 @@ app.use((req,res,next)=>{
     app.use(cors());
     next();
 })
-mongoose.set('strictQuery', true)
+//mongoose.set('strictQuery', true)
 
 
 app.use('/:word', require('./routes/word.routes'))
@@ -35,16 +35,17 @@ const startServer = async () => {
     })
     console.log('Conectado ao MongoDB.')
 
-    const PORT = process.env.PORT || 3000 // Vercel fornece a porta via process.env.PORT
+    /*const PORT = process.env.PORT || 3000 // Vercel fornece a porta via process.env.PORT
     app.listen(PORT, () => {
       console.log(`Servidor rodando na porta ${PORT}.`)
-    })
+    })*/
 
   } catch (error) {
     console.error('Erro ao conectar ao MongoDB:', error)
     process.exit(1) // Encerra o processo se a conexão falhar
   }
 }
-
-// Inicia o servidor
 startServer()
+app.listen(process.env.PORT,()=>{
+    console.log(`Server running on ${process.env.PORT}`)
+})
