@@ -39,10 +39,11 @@ const startServer = async () => {
     });
     console.log('Conectado ao MongoDB.');
 
-    const PORT = process.env.PORT || 3000;
+    const PORT = process.env.PORT;
     app.listen(PORT, () => {
-      console.log(`Servidor rodando na porta ${PORT}.`);
+      console.log(`Servidor rodando no Glitch na porta ${PORT}.`);
     });
+
   } catch (error) {
     console.error('Erro ao conectar ao MongoDB:', error);
     process.exit(1); // Encerra o processo se a conexão falhar
