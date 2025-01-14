@@ -48,9 +48,9 @@ const startServer = async () => {
     });
     console.log('Conectado ao MongoDB.');
 
-    const PORT = process.env.PORT;
+    const PORT = process.env.PORT || 3000; // Vercel fornece a porta via process.env.PORT
     app.listen(PORT, () => {
-      console.log(`Servidor rodando no Glitch na porta ${PORT}.`);
+      console.log(`Servidor rodando na porta ${PORT}.`);
     });
 
   } catch (error) {
