@@ -11,7 +11,9 @@ const mongoose = require('mongoose')
 const Word5 = require('./Words5.model') 
 const app = express()
 app.use(express.json()) 
-app.use(cors())
+app.use(cors({
+    origin: '*'
+}))
 mongoose.set('strictQuery', true)
 
 
