@@ -4,14 +4,14 @@ global.TextEncoder = TextEncoder;
 global.TextDecoder = TextDecoder;
 
 const cors = require('cors');
-app.use(cors());
+
 
 const express = require('express');
 const mongoose = require('mongoose');
 const Word5 = require('./Words5.model'); // Importa o modelo corretamente
 const app = express();
 app.use(express.json()); // Para tratar JSON no body
-
+app.use(cors());
 mongoose.set('strictQuery', true);
 
 // Rota para buscar uma palavra no banco de dados
