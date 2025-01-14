@@ -11,31 +11,16 @@ const mongoose = require('mongoose')
 const Word5 = require('./Words5.model') 
 const app = express()
 app.use(express.json()) 
-app.use(cors({
-    origin: '*'
-}))
-
+app.use((req,res,next)=>{
+    res.header("Acess-Control-Allow-Origin", "*");
+    res.header("Acess-Control-Allow-Origin", 'GET,PUT,DELETE,POST')
+    app.use(cors());
+    next();
+})
 mongoose.set('strictQuery', true)
 
 
-app.get('/:word', async (req, res) => {
-  const { word } = req.params 
-
-  try {
-    // Busca no banco de dados pela palavra
-    const result = await Word5.findOne({ word })
-    console.log(result)
-    if (result) {
-      console.log(result)
-      return res.json({ message: 'Palavra encontrada!', data: result })
-    } else {
-      return res.status(404).json({ message: 'Palavra não encontrada.' })
-    }
-  } catch (error) {
-    console.error('Erro ao pesquisar palavra:', error)
-    return res.status(500).json({ error: 'Erro no servidor.' })
-  }
-})
+app.use('/:word', require('./routes/word.routes'))
 app.get('/meu-ip', (req, res) => {
   const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
   res.send(`IP do cliente: ${ip}`)
