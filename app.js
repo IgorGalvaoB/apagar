@@ -1,4 +1,8 @@
 require('dotenv').config(); // Certifique-se de carregar o dotenv primeiro
+const { TextEncoder, TextDecoder } = require('util');
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder;
+
 const cors = require('cors');
 app.use(cors());
 
